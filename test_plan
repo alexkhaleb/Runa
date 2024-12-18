@@ -119,7 +119,7 @@ To ensure the API remains stable during frequent releases:
 
 1\. Test Scenarios Document.
 
-2\. Automated Test Scripts (Postman, RestAssured).
+2\. Automated Test Scripts (Postman, RestAssured, Pytest).
 
 3\. Load Testing Reports (JMeter).
 
@@ -133,7 +133,7 @@ To ensure the API remains stable during frequent releases:
 | Base URL | Provided by API provider. |
 | Authentication | API key-based access. |
 | Test Data | Pre-configured city names, lat/lon. |
-| Environment Tools | Postman, Hasura, TestRail. |
+| Environment Tools | Postman, Hasura, TestRail, Pytest. |
 
 **10\. Conclusion**
 
