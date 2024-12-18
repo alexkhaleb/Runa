@@ -14,7 +14,7 @@ This repository contains automated tests for the Current Weather Data API endpoi
 1. Clone the repository:
    ```bash
 
-git clone https://github.com/yourusername/current-weather-api-tests.git
+git clone https://github.com/alexkhaleb/current-weather-api-tests.git
 cd current-weather-api-tests
 
 2.	Install dependencies:
