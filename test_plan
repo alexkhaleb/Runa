@@ -1,0 +1,156 @@
+**Test Plan Document: Current Weather Data API Endpoint**
+
+Note: This comprehensive test plan serves as a detailed overview of my intended test execution strategy, demonstrating my comprehensive knowledge and the selection of appropriate tools to effectively execute an adequate test plan.
+
+**1\. Overview**
+
+This document provides an overview of the test plan for the Current Weather Data API Endpoint. It outlines the testing methodology, test scenarios, testing tools, and the integration of testing within a Continuous Integration/Continuous Deployment (CI/CD) pipeline.
+
+**2\. Scope**
+
+• Verify the accuracy of the Current Weather Data API Endpoint by retrieving and analyzing weather information.
+
+• Ensure that the endpoint effectively handles diverse input scenarios and edge cases.
+
+• Validate the endpoint’s performance, reliability, and security measures.
+
+**3\. Assumptions**
+
+• The API key-based authentication is required.
+
+• API supports various input parameters (e.g., city name, geographic coordinates, ZIP code).
+
+• Expected response format: JSON.
+
+• Response includes weather attributes like temperature, humidity, wind speed, and description.
+
+• Error handling is implemented for invalid requests.
+
+**4\. Testing Approach**
+
+The following types of testing will be performed:
+
+1\. **Functional Testing**: Ensures the API returns correct and expected results.
+
+2\. **Boundary and Edge Case Testing**: Evaluates how the API handles edge conditions.
+
+3\. **Negative Testing**: Ensures appropriate error handling for invalid inputs.
+
+4\. **Performance Testing**: Assesses response time and load handling.
+
+5\. **Security Testing**: Validates API security against unauthorized access.
+
+6\. **Usability Testing**: Checks the clarity and correctness of API documentation.
+
+7\. **Regression Testing**: Ensures new changes do not impact existing functionality.
+
+**5\. Test Tools and Frameworks**
+
+| **Tool/Framework** | **Purpose** |
+| --- | --- |
+| **Postman** | Manual API testing and collection runner. |
+| **Newman** | CLI to automate Postman test collections. |
+| **Hasura** | To query and validate API data responses. |
+| **RestAssured** | API automation framework for Java. |
+| **JMeter** | Load and performance testing. |
+| **TestRail** | Test case management and reporting. |
+| **GitHub Actions** | CI/CD pipeline integration. |
+| **Pytest / Visual Studio Code** | To Automate test cases |
+
+**6\. Test Scenarios**
+
+**6.1 Happy Path Scenarios**
+
+| **Test ID** | **Scenario** | **Input** | **Expected Result** |
+| --- | --- | --- | --- |
+| TC1 | Fetch weather by valid city name | q=London | Returns 200 OK with correct weather data. |
+| TC2 | Fetch weather by valid city ID | id=2172797 | Returns 200 OK with weather details. |
+| TC3 | Fetch weather by geographic coordinates | lat=35.6895&lon=139.6917 | Returns 200 OK with relevant weather. |
+| TC4 | Fetch weather by valid ZIP code | zip=94040,us | Returns 200 OK with accurate weather. |
+| TC5 | Verify response headers | Valid request | Includes Content-Type: application/json. |
+
+**6.2 Negative and Edge Case Scenarios**
+
+| **Test ID** | **Scenario** | **Input** | **Expected Result** |
+| --- | --- | --- | --- |
+| TC6 | Invalid city name | q=InvalidCityName | Returns 404 with error message. |
+| TC7 | Missing mandatory parameters | Blank request | Returns 400 Bad Request. |
+| TC8 | Invalid API key | appid=InvalidKey | Returns 401 Unauthorized. |
+| TC9 | Exceeding API rate limits | Multiple rapid requests | Returns 429 Too Many Requests. |
+| TC10 | Non-existent latitude/longitude | lat=999&lon=999 | Returns 404 Not Found. |
+| TC11 | Malformed query parameters | q==London&appid=key | Returns 400 Bad Request. |
+| TC12 | Response for empty ZIP code | zip= | Returns 400 Bad Request. |
+| TC13 | Verify response time | Valid request | Response time < 2 seconds. |
+| TC14 | Stress testing with 100 concurrent requests | Concurrent requests | API remains stable with valid responses. |
+
+**7\. Testing in CI/CD Pipeline**
+
+To ensure the API remains stable during frequent releases:
+
+1\. **Test Automation Integration**:
+
+• Write and maintain Postman collections and RestAssured test scripts.
+
+• Use **Newman** or **RestAssured** to automate API testing as part of CI/CD pipelines.
+
+2\. **CI/CD Pipeline Steps**:
+
+• **Build Phase**: Pull the latest API code.
+
+• **Unit Testing**: Validate low-level functionality.
+
+• **Integration Testing**: Test API endpoints individually.
+
+• **Functional Testing**: Run Postman/Newman tests against the API.
+
+• **Performance Testing**: Use JMeter scripts to assess API load and latency.
+
+• **Deployment Phase**: Deploy the API only if all tests pass successfully.
+
+3\. **Error Reporting and Monitoring**:
+
+• Integrate **TestRail** for test case management.
+
+• Capture test results and logs using tools like **Allure Reports**.
+
+• Use monitoring tools (e.g., Prometheus, Grafana) for real-time API health.
+
+**8\. Deliverables**
+
+1\. Test Scenarios Document.
+
+2\. Automated Test Scripts (Postman, RestAssured).
+
+3\. Load Testing Reports (JMeter).
+
+4\. CI/CD Test Integration Plan.
+
+**9\. Test Environment**
+
+| **Component** | **Details** |
+| --- | --- |
+| API Endpoint | /current_weather |
+| Base URL | Provided by API provider. |
+| Authentication | API key-based access. |
+| Test Data | Pre-configured city names, lat/lon. |
+| Environment Tools | Postman, Hasura, TestRail. |
+
+**10\. Conclusion**
+
+The proposed approach comprehensively validates the Current Weather Data API Endpoint through a combination of functional, edge-case, and performance testing. Continuous integration and continuous delivery (CI/CD) integration ensures that these tests are automatically executed, thereby maintaining the API’s stability and reliability.
+
+This implementation includes:
+
+1\. **Tests for three scenarios**:
+
+• Valid city name.
+
+• Valid geographic coordinates.
+
+• Error handling for invalid inputs.
+
+2\. **Assertions** for response status, structure, and data.
+
+3\. **Error handling** for unexpected results.
+
+4\. **Clear test reports** using pytest.
